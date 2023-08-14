@@ -1,0 +1,44 @@
+﻿    @model Asp.net_School.Models.AddStudentViewModel
+
+    <h1>Add Student</h1>
+    <form id="add-student-form" method="post" action="Add" class="mt-5">
+
+        <div class="mb-3">
+            <label for="" class="form-label">Id</label>
+            <input type="number" class="form-control" asp-for="Id"  required>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name" required>
+        </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Department</label>
+        <input type="text" class="form-control" asp-for="Department" required>
+    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    @section scripts {
+        <script>
+            $(document).ready(function() {
+                $('#add-student-form').submit(function(event) {
+                    event.preventDefault(); // prevent form from submitting normally
+                
+                    $.ajax({
+                        type: 'POST',
+                        url: 'Add',
+                        data: $(this).serialize(), // serialize form data
+                    success: function (response) {
+                        // handle success response
+                        alert('Student added successfully!');
+                        window.location.href = '@Url.Action("Index")'; // redirect to list view
+                    },
+                        error: function(xhr, status, error) {
+                            // handle error response
+                            alert('Error adding student: ' + error);
+                        }
+                    });
+                });
+            });
+        </script>
+    }

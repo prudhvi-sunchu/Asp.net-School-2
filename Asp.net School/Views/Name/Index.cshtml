@@ -1,0 +1,26 @@
+﻿@model List<Asp.net_School.Models.Domain.Student>
+
+@{
+}
+<h1>Students</h1>
+<table class="table">
+    <thread>
+        <tr>
+         
+            <th>Name</th>
+
+            <th> </th>
+        </tr>
+        
+    </thread>
+    <tbody>
+        @foreach(var student in Model)
+        {
+            <tr>
+  
+                <td>@student.Name</td>
+                  <td><a href="Students/View/@student.Id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
